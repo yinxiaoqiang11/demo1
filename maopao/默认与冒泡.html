@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+
+	<style>
+	    *{padding:0;margin:0; }
+	    ul{ list-style: none;  }
+	    #test2{
+	        width:170px;
+
+	    }
+	    #box{ padding:30px;  }
+	    #list{ width:170px; border:1px solid #ccc; display:none;  }
+	    #list li{ padding:5px;cursor:pointer;    }
+	</style>
+</head>
+		
+
+
+
+    <div id="box" >
+        <input type="text" id="test2" >
+        <ul id="list" >
+                <li>111</li>
+                <li>222</li>
+                <li>333</li>
+                <li>44</li>
+        </ul>
+    </div>   
+<script>
+// js阻止默认事件
+		test2.onfocus=function(e){
+			list.style.display="block";
+		}
+		test2.onblur=function(e){
+			list.style.display="none";
+		}		
+		var lis=list.getElementsByTagName('li');				
+		for(var i=0;i<lis.length;i++){
+
+			lis[i].onmousedown=function(e){//这里有必要说明一下事件的执行顺序和为什么不能给ul添加点击事件。当点击ul的时候鼠标键上升的时候 mousedown 执行完了input才会失去焦点blur。 mousedown --> blur 如果直接给ul 添加click事件input 会在失去焦点了blur 才会触发ul的click事件 事件执行顺序 blur --> click 当input blur了ul就隐藏了故得不到自己想要的效果。
+
+				e.preventDefault();	
+				console.log(e.preventDefault);				
+					console.log(this.innerText)
+					test2.value=this.innerText;
+			}
+		}
+
+
+// jq阻止默认事件(需引入jq库才能运行)
+// var $inp = $('#test2'),
+//     $ul = $('#list');
+//     $inp.on('focus',show);
+//     $inp.on('blur',hide);
+//     $ul.on('mousedown','li',changeText);//事件代理性能更好  把mousedown改成click 可以验证我上面说的事件执行顺序感兴趣的自己动手试下。
+//     function changeText(e){
+//          e.preventDefault(); //把阻止事件冒泡改成阻止默认事件
+//          $inp.val($(this).text());
+//     }
+//     function show(e){
+//        $ul.show();
+//     }
+//     function hide(){
+//         $ul.hide();
+//     }
+  
+
+
+
+
+// // js阻止冒泡事件
+
+// 		test2.onclick=function(e){
+// 			e.cancelBubble=true;
+// 			list.style.display="block";
+
+// 		}		
+// 		var lis=list.getElementsByTagName('li');			console.log(lis);	
+// 			for(var i=0;i<lis.length;i++){
+// 			lis[i].onclick=function(e){	
+// 					e.cancelBubble=true;											
+// 					console.log(this.innerText)
+// 					test2.value=this.innerText;
+// 				}
+// 			}
+// 		document.onclick=function(){
+// 			list.style.display="none";
+// 		}
+	
+			
+// jq 阻止冒泡事件
+// 
+// var $inp = $('#test2'),
+//     $ul = $('#list'),doc = $(document);
+//     $inp.on('click',show);
+//     doc.on('click',hide);
+//     $ul.on('click','li',changeText);//事件代理性能更好
+//     function changeText(e){
+//          e.stopPropagation();
+//          $inp.val($(this).text());
+//     }
+//     function show(e){
+//         e.stopPropagation(); //阻止事件冒泡
+//         $ul.show();
+//     }
+//     function hide(){
+//         $ul.hide();
+//     }
+  
+</script>
+		
+
+		
+
+
+
+
+
+
+  
+</script>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var reg=/abc/;//常量字符串
+		var str="abdc";
+		console.log(reg.test(str));
+		
+		
+		//元字符
+		// \d  数字
+		var reg1=/\d/;
+		var str1="abcd1";
+		console.log(reg1.test(str1));
+		
+		
+		// \D  非数字
+		var reg1_1=/\D/;
+		console.log(reg1_1.test(str1));
+		
+		//正则检测方式，不设置全局检测，那么就只检测一次就结束
+		
+		// \w  数字字母下划线
+		// \W  非数字字母下划线
+		//修饰符g  全局检测
+		//.  所有非换行符结束符的字符
+		// \s  空格
+		var reg2=/\w/g;
+		var reg2_1=/\W/;
+		var reg2_2=/./g;
+		var reg2_3=/\s/;
+		var str2="!_@#$% \na1b2c3";
+		console.log(reg2.test(str2));
+		console.log(reg2_1.test(str2));
+		console.log(str2.match(reg2));
+		console.log(str2.match(reg2_2));
+		console.log(reg2_3.test(str2));
+		console.log(str2.match(reg2_3));
+		
+		// ^ 开头
+		// $ 结尾
+		// | 或
+		var str3="     hello world     ";
+		console.log(str3.replace(" ",""));//只执行一次
+		console.log(str3.replace(/\s/g,""));
+		console.log(str3.replace(/^\s/,""));
+		var str3_3=str3.replace(/^\s/,"");
+		var str3_4=str3.replace(/^\s|\s$/g,"");
+		console.log(str3_3.length);
+		console.log(str3_4.length);
+		
+		// \b  检测单词开头或结尾是否有
+		// \B 不处于单词开头或结尾的
+		var str4="hello world love";
+		var reg4=/\bl/;
+		var reg4_1=/\Bl/g;
+		console.log(reg4.test(str4));
+		console.log(str4.match(reg4));
+		console.log(str4.match(reg4_1));
+		
+		//NUL  \0  空字符串
+		var str5="123NULLabc\0";
+		var reg5=/\0/;
+		console.log(reg5.test(str5));
+		
+		// \n  查找换行符
+		var reg6=/.|\n/;//查找所有的
+		
+		
+		//[]用于查找某个范围内的字符
+		
+		//修饰符i  不区分大小写
+		var reg7=/[abc]/g;
+		var reg7_1=/[a-z]/gi;
+		var reg7_2=/[A-Z]/g;
+		var reg7_3=/[a-zA-Z]/g;
+		var reg7_4=/[0-9]/g;
+		var reg7_5=/[A-z]/g;//不仅仅是字母  还包括ACSII里91-96的五个字符
+		var str7="_aggsjkdfjgJLJKKLHJdfjkgjkdLJK{|SFDKL:JOPFSjkhdsjkgalkjklajYTWTYETYFOKFGPkgbrgspokgl;adhdjjcvxbn";
+		console.log(str7.match(reg7));
+		console.log(str7.match(reg7_1));
+		console.log(str7.match(reg7_2));
+		console.log(str7.match(reg7_3));
+		console.log(str7.match(reg7_4));
+		console.log(str7.match(reg7_5));
+		
+		//^在中括号里面，是非
+		//^在正则最前面，以某某开头
+		var reg8=/[^0-9]/g;
+		var reg8_1=/^[0-9]/;
+		var str8="8gjaegjkjksergqwioeipoetq[pksllks445656334578687e786gftw5er4gajk1537897892498026^&^&^%$%$%^&*(()*(*";
+		console.log(str8.match(reg8));
+		console.log(str8.match(reg8_1));
+		
+		
+		//{}量词
+		//{3}   长度为固定值3
+		//{3,}  长度最短为3
+		//{3,8} 长度为3到8
+		var str9="abc1234565789kafsd";
+		var reg9=/^[a-z]/i;//以字母开头
+		var reg9_1=/^[a-z]{3}/i;//以三个字母开头
+		var reg9_2=/^[a-z]{4}/i;//以四个字母开头
+		var reg9_3=/^[A-Z]/;//以大写字母开头
+		console.log(reg9.test(str9));
+		console.log(reg9_1.test(str9));
+		console.log(reg9_2.test(str9));
+		
+		
+		//以大写字母开头，包含数字字母或下划线，长度最少8位
+		var reg10=/^[A-Z]\w{7,}/;
+		var str10="Xaaaaaaa";
+		console.log(reg10.test(str10));
+		
+		//*		0个或多个
+		//?		0个或1个
+		//+		1个及以上（至少一个）
+		
+		
+		var reg11=/abc*/g;//ab必须，检测c是否有0个或多个
+		var reg11_1=/abc?/g;
+		var reg11_2=/abc+/g;
+		var str11="hahagundanqusiabcccc";
+		console.log(reg11.test(str11));
+		console.log(str11.match(reg11));
+		console.log(str11.match(reg11_1));
+		console.log(str11.match(reg11_2));
+		//()	查找任何指定的选项。
+		//?=n 量词匹配任何其后紧接指定字符串 n 的字符串。
+		//?!n 量词匹配其后没有紧接指定字符串 n 的任何字符串。
+		var reg12=/is(?= all)/;//匹配is，其后需紧跟一个" all"的字符串
+		var reg12_1=/is all/;
+		var reg12_2=/is(?! all)/gi;//匹配is不区分大小写，其后不允许存在" all"的字符串
+		var str12="Is this all there is";
+		console.log(str12.match(reg12));
+		console.log(str12.match(reg12_1));
+		console.log(str12.match(reg12_2));
+		
+		
+		//手机号码
+		var reg13=/^1[34578][0-9]{9}$/;
+		var str13="18516550512abc";
+		console.log(reg13.test(str13));
+		
+		//固话
+		var reg14=/((^0[0-9]{2,3}-)[1-9][0-9]{6,7}$)|(^[1-9][0-9]{6,7}$)/;
+		var reg14_1=/((^0\d{2,3}-)[1-9]\d{6,7}$)|(^[1-9]\d{6,7}$)/;
+		
+		var str14="87654329";
+		console.log(reg14.test(str14));
+		console.log(str14.match(reg14));
+		
+		
+		//邮箱
+		//1、4-16位，英文、数字、下划线，小写字母开头
+		//2、6-18位，可使用数字、字母、下划线
+		//3、\w
+		var reg15=/^[\w\$%&\*]{3,32}@[A-Za-z0-9]{2,16}(\.[a-z\u4e00-\u9fa5]{2,8})+$/;
+		var str15="125645645@123.哈哈";
+		console.log(reg15.test(str15));
+		
+		//汉字
+		var str16="你好12335大家好1we哈fa";
+		var reg16=/([\u4e00-\u9fa5]{1,})+/g;//自己写的
+		var reg16_1=/[\u4e00-\u9fa5]+/g;
+		console.log(str16.match(reg16));
+		
+		
+		var str17='你好<a   >百度</a><div style="width:100px "   >会稽</div><br/>';
+		var reg17_1=/<[^<>]*>/g;
+		var reg17=/<\/?([a-z]|\!)[1-6a-z]*(\s+[\w\=\"\:\']*)*\/?>/gi;
+		console.log(str17.match(reg17));
+		console.log(str17.match(reg17_1));
+		console.log(str17.replace(reg17,""));
+	</script>
+</html>

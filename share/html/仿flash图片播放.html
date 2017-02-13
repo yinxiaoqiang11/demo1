@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>仿flash图片播放</title>
+	<link rel="shortcut icon" href="http://img3.imgtn.bdimg.com/it/u=2992739367,3268882804&fm=21&gp=0.jpg">
+	<link rel="stylesheet" type="text/css" href="../css/仿flash.css">
+	</style>
+</head>
+<body>
+	<div id="box">
+		<a href="javascript:void(0);" id="mark_left"><div id="left">LAST</div></a>
+		<a href="javascript:void(0);" id="mark_right"><div id="right">NEXT</div></a>
+	    <ul id="bigpic">
+			<li><img src="http://img1.imgtn.bdimg.com/it/u=554339051,344280974&fm=21&gp=0.jpg" alt=""></li>
+
+			<li><img src="http://img5.imgtn.bdimg.com/it/u=1653427938,1067707193&fm=21&gp=0.jpg" alt=""></li>
+			<li><img src="http://img3.imgtn.bdimg.com/it/u=583224082,3893842905&fm=21&gp=0.jpg" alt=""></li>
+			<li><img src="http://img2.imgtn.bdimg.com/it/u=1336485010,2077852360&fm=21&gp=0.jpg" alt=""></li>
+			<li><img src="http://img1.imgtn.bdimg.com/it/u=554339051,344280974&fm=21&gp=0.jpg" alt=""></li>
+		</ul>
+	</div>
+	<div id="upbox">
+		<ul id="smallpic">
+			<li><img src="http://img2.imgtn.bdimg.com/it/u=1336485010,2077852360&fm=21&gp=0.jpg" alt=""></li>
+			<li><img src="http://img1.imgtn.bdimg.com/it/u=554339051,344280974&fm=21&gp=0.jpg" alt=""></li>
+
+			<li style="opacity:1;"><img src="http://img5.imgtn.bdimg.com/it/u=1653427938,1067707193&fm=21&gp=0.jpg" alt=""></li>
+			<li><img src="http://img3.imgtn.bdimg.com/it/u=583224082,3893842905&fm=21&gp=0.jpg" alt=""></li>
+			<li><img src="http://img2.imgtn.bdimg.com/it/u=1336485010,2077852360&fm=21&gp=0.jpg" alt=""></li>
+			<li><img src="http://img1.imgtn.bdimg.com/it/u=554339051,344280974&fm=21&gp=0.jpg" alt=""></li>
+			<li><img src="http://img5.imgtn.bdimg.com/it/u=1653427938,1067707193&fm=21&gp=0.jpg" alt=""></li>
+		</ul>
+	</div>
+	<div id="content">
+        <input type="button" value="点我">
+		<p> 注意：<br>
+			1.两边按钮——淡入淡出，使用老师给的匀速move.js（用于多物体的时候，相互使用一个定时器timer，对于物体的运动会有影响）<br>
+			2.ul位置移动，也就是轮播图的原理。这里上面大的ul还可以用高度的变化来做，视觉效果更好，就像拉幕式<br>
+			3.定位等基本的练习<br>
+			4.smallpic.style.width 不要忘记在后面加上单位<br>
+			5.多个物体运动要设置多个计时器，不要钱
+		</p>
+
+	</div>
+</body>
+<script src='../js/匀速move.js'></script>
+<script src='../js/tween.js'></script>
+<script>
+	var timer1 = null;
+	var timer2 = null;
+	var timerr = null;
+	var timer3 = null;
+	var timer4 = null;
+	var timer5 = null;
+	var btn_left = document.querySelector('#left');
+	var btn_right = document.querySelector('#right');
+	var mark_left = document.querySelector('#mark_left');
+	var mark_right = document.querySelector('#mark_right');
+	var bigpic = document.querySelector('#bigpic');
+	var imgs = bigpic.querySelectorAll('img');
+	var index = 1;
+	var smallpic = document.querySelector('#smallpic');
+	var lis = smallpic.querySelectorAll('li');
+	bigpic.style.top = -imgs[0].offsetHeight+'px';//一定要记得加单位
+	smallpic.style.width = lis[0].offsetWidth*lis.length+'px';
+	smallpic.style.left = -lis[0].offsetWidth+'px';
+	
+	//左右按钮 移入出现移出消失
+	
+    mark_left.onmouseover = function(){
+        startMove1(btn_left,'opacity',60);}
+    mark_left.onmouseout = function(){
+        startMove1(btn_left,'opacity',0);}
+    mark_right.onmouseover = function(){
+        startMove2(btn_right,'opacity',60);}
+    mark_right.onmouseout = function(){
+        startMove2(btn_right,'opacity',0);}
+
+	//上面大的ul图片滚动
+    function dong(){
+    	var t = 0;
+    	var b =  bigpic.offsetTop;//初始值
+    	var c = -imgs[0].offsetHeight*index-b;//变化量
+    	var d = 30;
+        timerr = setInterval(function(){
+        	t++;
+        	if (t>=d) {
+        		clearInterval(timerr);
+        		bigpic.style.top = 0;
+        	}
+        	bigpic.style.top = Tween.Cubic.easeOut(t,b,c,d)+'px';
+        },30)
+    };
+    //下面小的ul滚动
+    function dongup(){
+    	var t = 0;
+    	var b = smallpic.offsetLeft;
+    	var c = -lis[0].offsetWidth*index-b;
+    	var d = 30;
+        timer3 = setInterval(function(){
+        	t++;
+        	if (t>=d) {
+        		clearInterval(timer3);
+        	}
+        	smallpic.style.left = Tween.Cubic.easeOut(t,b,c,d)+'px';
+        	//循环：还原其他li的透明度为0.2
+        	for(var i = 0;i<lis.length;i++){
+        		lis[i].style.opacity = 0.2;
+        	}
+        	lis[index+1].style.opacity = 1;
+        },30)
+    };
+    //右边按钮单击事件
+    btn_right.onclick = function(){
+    	  clearInterval(timerr);
+    	  clearInterval(timer3);
+    	  index++;
+    	  if (index>imgs.length-1) {
+    	  	index = 1;
+    	  	bigpic.style.top = 0;
+    	  	smallpic.style.left = 0;
+    	  }
+    	   dong();//调用上面大的ul滚动事件
+    	   dongup();//调用下面小的ul滚动事件
+    };
+    //左边按钮单击事件
+    btn_left.onclick = function(){
+    	  clearInterval(timerr);
+    	  clearInterval(timer3);
+    	  index--;
+    	  if (index<0) {
+    	  	index = imgs.length-2;
+            indexs =lis.length-4;
+    	  	bigpic.style.top = -imgs[0].offsetHeight*(imgs.length-1)+'px';
+    	  	smallpic.style.left = -lis[0].offsetWidth*(lis.length-2)+'px';
+    	  }
+    	   dong();
+    	   dongup();
+    }
+    //单击按钮  图片向左滚动
+    for(var i =0;i<lis.length;i++){
+    	clearInterval(timer4);
+    	clearInterval(timer5);
+    	lis[i].onclick = function(){
+    		clearInterval(timerr);
+    	    clearInterval(timer3);
+    		index++;
+    		console.log(index);
+    		if (index>lis.length-3) {
+    			index=1;
+    			smallpic.style.left = 0;
+    			bigpic.style.top = 0;
+    		}
+            dong();
+    	   dongup();
+      }   
+    }
+    //代码区结束
+    var btn = document.querySelector('input');
+    var content = document.querySelector('p');
+    btn.onclick = function(){
+        content.style.display='block';
+    }
+</script>
+</html>

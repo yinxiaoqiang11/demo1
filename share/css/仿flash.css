@@ -1,0 +1,123 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background: #ccc;
+}
+ul {
+	list-style-type: none;
+}
+/*上面ul外面整体的div*/
+#box {
+	width: 500px;
+	margin: 100px auto 0;
+	height: 300px;
+	/*border: 2px solid red;*/
+	position: relative;
+	overflow: hidden;
+}
+/*上面大的ul*/
+#bigpic {
+	width: 500px;
+	height: 300px;
+	position: absolute;
+	top: 0;
+}
+#bigpic li {
+	width: 500px;
+	height: 300px;
+}
+#bigpic li img{
+	width: 100%;
+	height: 100%;
+}
+/*左侧按钮*/
+#left {
+	position: absolute;
+	width: 50px;
+	height: 100px;
+	top: 100px;
+	background: black;
+	opacity: 0;
+	color: white;
+	text-align: center;
+	line-height: 100px;
+	z-index: 100;
+	cursor: pointer;
+}
+/*右侧按钮*/
+#right {
+	width: 50px;
+	height: 100px;
+	right: 0;
+	position: absolute;
+	top: 100px;
+	background: black;
+	opacity: 0;
+	color: white;
+	color: white;
+	text-align: center;
+	line-height: 100px;
+	z-index:2;
+	cursor: pointer;
+}
+/*左侧a的区域*/
+#mark_left {
+	display: block;
+	width: 250px;
+	height: 300px;
+	background: rgba(255,255,255,0);
+	left: 0;
+	position: absolute;
+	z-index: 1;
+	opacity: 1;
+	cursor: default;
+}
+/*右侧a的区域*/
+#mark_right {
+	display: block;
+	width: 250px;
+	height: 300px;
+	background: rgba(255,255,255,0);
+	right: 0;
+	position: absolute;
+	opacity: 1;
+	z-index: 1;
+	cursor: default;
+}
+/*下面小的ul*/
+#upbox {
+	width: 500px;
+	margin:0 auto;
+	height: 130px;
+	position: relative;
+	background-color: #666;
+	overflow: hidden;
+}
+#smallpic {
+	position: relative;
+}
+#smallpic li {
+	width: 150px;
+	height: 100px;
+	padding: 8px;
+	float: left;
+	opacity: 0.2;
+	cursor: pointer;
+}
+#smallpic img {
+	width: 100%;
+	height: 100%;
+}
+/***************************代码部分结束**************************************/
+#content {
+	width: 800px;
+	height: 300px;
+	margin: 100px auto;
+	font-size: 20px;
+	line-height: 30px;
+}
+p {
+	display: none;
+}

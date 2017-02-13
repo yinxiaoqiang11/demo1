@@ -1,0 +1,76 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+div { 
+	 width:200px;
+	 height:180px;
+	 border:1px solid #333;
+ 	 background:#fff;
+ 	 padding:20px;
+ 	 line-height:40px;
+ 	 overflow: auto;
+ 	 background-image: url('http://img2.imgtn.bdimg.com/it/u=2203844018,3117802744&fm=21&gp=0.jpg');
+ 	 background-repeat: no-repeat;
+ 	  }
+a {
+	 padding:5px 15px;
+	 border-radius: 50%;
+	  font:20px/1px '楷体';
+	  /*opacity: 0.5;*/
+	   }
+	  
+</style>
+</head>
+
+<body>
+
+<div id="div1"></div>
+
+	
+</span>
+<input type="text" />
+<input type="button" value="按钮" />
+
+<script>
+////*****分享两个知识点1）split('')转换成字符串 join('')转换成数组
+
+///3)js写cssText样式 
+var oDiv = document.getElementById('div1');
+var aInp = document.getElementsByTagName('input');
+var arrColor = ['red','yellow','blue','gold','green'];
+
+aInp[1].onclick = function () {
+	var str = aInp[0].value;				// '文字内容'属于字符串
+	var arr = str.split('');	//把字符串穿换成数组			// [ '文', '字', '内', '容' ]
+	
+	
+	for ( var i=0; i<arr.length; i++ ) {
+		arr[i] = '<a href="http://img0.imgtn.bdimg.com/it/u=2901316494,508133466&fm=21&gp=0.jpg" style="background:'
+		+ arrColor[i%arrColor.length] + ';">' + arr[i] + '</a>';
+		
+	}
+	
+	oDiv.innerHTML += arr.join('');
+};
+
+//var arr = [ 'aa',+'bb',+'cc' ];
+
+//
+//// alert( typeof arr.join() );	'aa'+','+'bb'+','+'cc'
+//// alert( arr.join().length );
+//
+// alert( arr.join('') );
+//
+//alert( arr.join('-') );
+
+
+
+</script>
+
+
+</body>
+</html>

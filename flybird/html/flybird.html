@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>FlyBird</title>
+	<style>
+		body {
+			margin: 0;
+		}
+		.container {
+			position: absolute;
+			font-size: 0;
+			line-height: 0;
+			overflow: hidden;
+		}
+		.bird {
+			position: absolute;
+			left:  60px;
+			top: 250px;
+			z-index: 100;
+		}
+		.topPipe {
+			width: 62px;
+			position: absolute;
+			top: 0;
+			background-image: url('../img/up_mod.png');
+		}
+		.topPipe img{
+			position: absolute;
+			bottom: 0;
+		}
+		.bottomPipe {
+			width: 62px;
+			position: absolute;
+			bottom: 0;
+			background-image: url('../img/down_mod.png');
+		}
+		.bottomPipe img {
+			position: absolute;
+			top: 0;
+		}
+		.sliper {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			z-index: 10;
+		}
+
+		.startBox,.overBox {
+			position: absolute;
+			left: 0;
+			top: 0;
+			text-align: center;
+			display: none;
+			z-index: 200;
+		}
+		.title{
+			position: relative;
+			top: 100px;
+			display: inline-block;
+		}
+		.startBird {
+			position: absolute;
+			right: 0;
+			bottom: 15px;
+		}
+		.startBtn {
+			position: absolute;
+			left: 60px;
+			top: 375px;
+		}
+		.scoreBtn {
+			position: absolute;
+			right: 60px;
+			top: 375px;
+		}
+		.startBtn:hover,
+		.scoreBtn:hover,
+		.okBtn:hover,
+		.submitBtn:hover {
+			opacity: 0.5;
+			cursor: pointer;
+		}
+		.gameover {
+			position: relative;
+			top: 80px;
+		}
+		.message {
+			position: relative;
+			display: inline-block;
+			top: 150px;
+		}
+		.okBtn {
+			position: absolute;
+			width: 85px;
+			height: 29px;
+			left: 50px;
+			top: 340px;
+		}
+		.submitBtn {
+			position: absolute;
+			right: 50px;
+			top: 340px;
+		}
+		.countImg {
+			position: absolute;
+			top: 40px;
+			right: 35px;
+		}
+		.bestImg {
+			position: absolute;
+			top: 90px;
+			right: 35px;
+		}
+		.countImg img,.bestImg img {
+			width: 16px;
+		}
+
+		.count {
+			position: absolute;
+			top: 60px;
+			left: 47%;
+			z-index: 100;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<img src="../img/bg.jpg" alt="">
+		<div class="bird">
+			<img src="../img/bird0.png" alt="">
+		</div>
+		<img class="sliper" src="../img/sliper.png" alt="">
+		<span class="count"><img src="../img/0.jpg" alt=""></span>
+	</div>
+	<div class="startBox">
+		<span class="title">
+			<img src="../img/head.jpg" alt="">
+			<img src="../img/bird0.png" alt="" class="startBird">
+		</span>
+		<img class="startBtn" src="../img/start.jpg" alt="">
+		<img class="scoreBtn" src="../img/score.jpg" alt="">
+	</div>
+	<div class="overBox">
+		<img class="gameover" src="../img/game_over.png" alt="">
+		<div class="message">
+			<img src="../img/message.jpg" alt="">
+			<span class="countImg"><img src="../img/0.jpg" alt=""></span>
+			<span class="bestImg"><img src="../img/0.jpg" alt=""></span>
+		</div>
+		<img class="okBtn" src="../img/ok.jpg" alt="">
+		<img class="submitBtn" src="../img/submit.jpg" alt="">
+	</div>
+	<audio class="audioBullet" src="../img/bullet.mp3"></audio>
+	<audio src="../img/game_music.mp3" autoplay="autoplay" loop="loop"></audio>
+	<audio class="audioOver" src="../img/game_over.mp3"></audio>
+</body>
+<script src="flybird.js"></script>
+</html>

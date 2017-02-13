@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>snake</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			.screen {
+				width: 500px;
+				height: 500px;
+				background-color: lightgray;
+				margin: 0 auto;
+				position: relative;
+			}
+			.header {
+				width: 25px;
+				height: 25px;
+				background-color: red;
+				position: absolute;
+				left: 150px;
+				top: 200px;
+			}
+			.tail {
+				width: 25px;
+				height: 25px;
+				background-color: blue;
+				position: absolute;
+				left: 125px;
+				top: 200px;
+			}
+			.food {
+				width: 25px;
+				height: 25px;
+				background-color: yellow;
+				position: absolute;
+			}
+			.ggwp {
+				width: 500px;
+				height: 500px;
+				background-color: rgba(0,0,0,0.5);
+				position: relative;
+				margin: 0 auto;
+				margin-top: -500px;
+				text-align: center;
+				display: none;
+			}
+			.gg {
+				position: relative;
+				color: gold;
+				font-size: 30px;
+				top: 100px;
+			}
+			.wp {
+				position: relative;
+				color: blue;
+				font-size: 30px;
+				top: 200px;
+			}
+			.score {
+				position: relative;
+				left: 50%;
+				top: 20px;
+				font-size: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="screen">
+			<div class="header"></div>
+			<div class="tail"></div>
+		</div>
+		<div class="ggwp">
+			<span class="gg">Good Game Well Play!</span>
+			<p class="wp">重新开始</p>
+		</div>
+		<span class="score">分数：0</span>
+	</body>
+	<script type="text/javascript" src="tanchishe.js"></script>
+</html>

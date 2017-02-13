@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>太极图</title>
+		<style type="text/css">
+			body{
+				margin:0;
+			}
+			/*红色背景圆*/
+			.div1{
+				width: 600px;
+				height: 600px;
+				background: red;
+				border:1px red solid;
+				margin:50px auto;
+				border-radius: 50% 50%;
+			}
+
+			/*太极*/
+			.div2{
+				position: relative;
+				height: 400px;
+				width: 0px;
+				margin:100px;
+				border-left: 200px solid black;
+				border-right: 200px solid white;
+				box-shadow: 0 0 30px rgba(0,0,0,0.5);
+				border-radius: 50%;
+				animation:xuanzhuan  40s infinite;
+
+			}
+	
+			/*.div2:before{
+				width: 200px;
+				height: 200px;
+				position: absolute;
+				content: "";
+				display: block;
+				top:0;
+				left:-100px;
+				background-color: white;
+				border-radius:50%;
+
+			}*/
+
+			
+			/*.div2:before{
+				
+				box-shadow: 0 200px black;
+			}*/
+			/*.div2:after{
+				width: 60px;
+				height:60px;
+				position: absolute;
+				content: "";
+				display: block;
+				top:70px;
+				left:-30px;
+				background: black;
+				border-radius:50%;
+				
+			}*/
+			/*.div2:after{
+				
+				box-shadow: 0 200px white;
+			}*/
+			
+		/*	@keyframes xuanzhuan {
+
+    			0% {transform:rotate(0deg);}
+
+    			100% {transform:rotate(3600deg);}
+
+
+			}*/
+
+			
+		</style>
+	</head>
+	<body>
+		<div class="div1">
+			<div class="div2"></div>	
+		</div>
+		
+	</body>
+</html>

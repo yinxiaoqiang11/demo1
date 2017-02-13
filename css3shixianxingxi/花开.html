@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>花开</title>
+	</head>
+	<style>
+		.box{
+			width: 300px;
+			height: 300px;
+			position: relative;
+			margin: 200px auto;
+			
+		}
+		.last{
+			width: 300px;
+			height: 300px;
+			position: absolute;
+			border-radius: 0 300px;
+			background-color: red;
+			opacity: 0.5;
+			transform: rotate(45deg);
+			transform-origin: 300px 300px;
+			transition: 5s linear;
+			animation-fill-mode: forwards;
+			animation-iteration-count: infinite;
+			animation-direction: alternate-reverse;
+			animation-duration: 3s;
+			animation-timing-function: linear;
+		}
+		.last:nth-child(2){
+			animation-name: show-2;
+		}
+		.last:nth-child(3){
+			animation-name: show-3;
+		}
+		.last:nth-child(4){
+			animation-name: show-4;
+		}
+		.last:nth-child(5){
+			animation-name: show-5;
+		}
+		.last:nth-child(6){
+			animation-name: show-6;
+		}
+		.last:nth-child(7){
+			animation-name: show-7;
+		}
+		@-webkit-keyframes show-2{
+			from{transform: rotate(45deg);}
+			to{transform: rotate(30deg);}
+		}
+		@-webkit-keyframes show-3{
+			from{transform: rotate(45deg);}
+			to{transform: rotate(15deg);}
+		}
+		@-webkit-keyframes show-4{
+			from{transform: rotate(45deg);}
+			to{transform: rotate(0deg);}
+		}
+		@-webkit-keyframes show-5{
+			from{transform: rotate(45deg);}
+			to{transform: rotate(60deg);}
+		}
+		@-webkit-keyframes show-6{
+			from{transform: rotate(45deg);}
+			to{transform: rotate(75deg);}
+		}
+		@-webkit-keyframes show-7{
+			from{transform: rotate(45deg);}
+			to{transform: rotate(90deg);}
+		}
+	</style>
+	<body>
+		<div class="box">
+			<div class="last"></div>
+			<div class="last"></div>
+			<div class="last"></div>
+			<div class="last"></div>
+			<div class="last"></div>
+			<div class="last"></div>
+			<div class="last"></div>
+		</div>
+	</body>
+</html>

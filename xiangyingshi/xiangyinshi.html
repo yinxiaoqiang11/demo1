@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>响应式的导航栏</title>
+      <link rel="stylesheet" type="text/css" href="文字说明.css">
+      <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+      <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+      <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+   </head>
+   <body>
+      <nav class="navbar navbar-default">
+         <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" 
+               data-target="#example">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">导航标题</a>
+         </div>
+         <div class="collapse navbar-collapse" id="example">
+            <ul class="nav navbar-nav">
+               <li class="active"><a href="#">导航选项1</a></li>
+               <li><a href="#">导航选项2</a></li>
+               <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                     导航选项3 <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                     <li><a href="#">下拉项1</a></li>
+                     <li><a href="#">下拉项2</a></li>
+                     <li><a href="#">下拉项3</a></li>
+                     <li class="divider"></li>
+                     <li><a href="#">下拉项4</a></li>
+                     <li class="divider"></li>
+                     <li><a href="#">下拉项5</a></li>
+                  </ul>
+               </li>
+            </ul>
+         </div>
+      </nav>
+
+
+
+
+   <div class="introduce">
+      <p>
+         
+      1. 向 &lt;nav&gt; 标签添加 class .navbar、.navbar-default。<br>
+     
+      2. 向 &lt;div&gt;元素添加一个标题 class .navbar-header，内部包含了带有 class navbar-brand 的 &lt;a&gt;  
+         元素。这会让文本看起来更大一号。<br>
+      3. 为了向导航栏添加链接，只需要简单地添加带有 class .nav、.navbar-nav 的无序列表即可。<br>
+      4. 为了给导航栏添加响应式特性，要折叠的内容必须包裹在带有 classes .collapse、.navbar-collapse 的 &lt;div&gt;中。<br>
+
+      5. 折叠起来的导航栏实际上是一个带有 class .navbar-toggle 及两个 data- 元素的按钮。第一个是 data-toggle，用于告诉 JavaScript 需要对按钮做什么，第二个是 data-target，指示要切换到哪一个元素。三个带有 class .icon-bar 的 &lt;span&gt;创建所谓的汉堡按钮。这些会切换为 .nav-collapse &lt;div&gt;中的元素。
+
+      </p>
+   </div>  
+   <div class="methed">
+      使用方法：<br>
+      1、&lt;nav&gt;标签添加 .navbar、.navbar-default
+       <pre>
+         &lt;nav class="navbar navbar-default"&gt;
+                     …
+         &lt;/nav&gt;
+      </pre>
+      2、标题&lt;div&gt;元素添加.navbar-header<br>
+      <pre>
+         &lt;div class="navbar-header"&gt;
+               …
+         &lt;/div&gt;
+      </pre>
+      3、保证在窄屏时要显示的图标样式（固定写法）：<br>
+      <pre>
+         &lt;button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#example&gt;
+          &lt;span class="icon-bar"&gt;&lt;/span&gt;
+          &lt;span class="icon-bar"&gt;&lt;/span&gt;
+          &lt;span class="icon-bar"&gt;&lt;/span&gt;
+         &lt;/button &gt;
+      </pre>
+      4、 需要折叠的div代码段：<br>
+      <pre>
+         &lt;div class="collapse navbar-collapse" id="example"&gt;
+              &lt;ul class="nav navbar-nav"&gt;
+               …
+              &lt;/ul&gt;
+         &lt;/div&gt;
+      </pre>
+   </div>
+   </body>
+</html>

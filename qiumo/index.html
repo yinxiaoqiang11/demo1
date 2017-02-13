@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>求莫</title>
+		<style>
+			li{
+				list-style: none;
+				height: 50px;
+				
+				border: 1px solid royalblue;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			
+			
+		</ul>
+	</body>
+	<script>
+		//求莫规律 0%3 =>0 1%3 =>1  2%3 =>2  3%3 =>0实例 取莫可以代替for 嵌套for
+
+		window.onload=function(){
+			var aLI=document.getElementsByTagName('li');
+			var arr=['red','yellow','green','cyan','blue','pink'];//数组定义
+			var arr1=['rosybrown','royalblue','#fff','#000000'];
+//			var str=''; 取代索引值的第二种方法在全局声明****
+			for (var i=0;i<aLI.length;i++) {
+				 aLI[i].index=i;//索引值和在全局申明变量一样的的效果 var str='';*****
+				aLI[i].style.background=arr[i%arr.length];//经常这个地方错一定要记住
+			aLI[i].onmouseover=function(){
+//				str = this.style.background;//先把颜色存起来*******
+				this.style.background=arr1[this.index%arr1.length];//、两个数组变换
+			}
+			aLI[i].onmouseout=function(){
+				this.style.background=arr[this.index%arr.length];//索引值的使用
+//				this.style.background=str;//一样的效果******
+			}
+			
+	}
+			alert(1%10)
+}
+			
+
+	</script>
+</html>

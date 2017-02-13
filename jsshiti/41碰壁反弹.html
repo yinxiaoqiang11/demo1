@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>碰壁反弹</title>
+		<style>
+			#wrap{
+				width:1200px;
+				height:800px;
+				border:8px green solid;
+				position: relative;
+			}
+			#inner{
+				width:200px;
+				height:200px;
+				background:black;
+				border:10px yellow solid;
+				position: absolute;
+				top:0;
+				left:0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="inner"></div>
+		</div>
+	</body>
+	<script>
+		var oWrap=document.getElementById('wrap');
+		var oInner=document.getElementById('inner');
+		var speed=10;//定义速度
+
+		// 最大横向移动距离；
+		var Max_Width=oWrap.clientWidth-oInner.offsetWidth;
+		//  最大纵向移动距离；
+		var Max_Height=oWrap.clientHeight-oInner.offsetHeight;
+		// 开关功能
+		var x=y=true;
+		// 测试 0；
+		console.log(oInner.offsetLeft);
+			// 加定时器，每50s循环一次；
+			var timer=null;
+			timer=setInterval(function(){
+
+				// 存变量
+				var ll=oInner.offsetLeft;
+				var tt=oInner.offsetTop;
+
+				if(x){
+					ll+=speed;
+					if(ll>Max_Width){
+						x=false;
+					}
+				}
+				else{
+					ll-=speed;
+					if(ll<0){
+						x=true;
+					}
+				}
+
+				if(y){
+					tt+=speed;
+					if(tt>Max_Height){
+						y=false;
+					}
+				}
+				else{
+					tt-=speed;
+					if(tt<0){
+						y=true;
+					}
+				}
+				// 让left和top随着offsetLeft和offsetTop运动；
+				oInner.style.left=ll+"px";
+				oInner.style.top=tt+"px";
+
+			},50)
+
+	</script>
+</html>

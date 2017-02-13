@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>瀑布流</title>
+		<style>
+			/*瀑布流思路：1.首先确定列数，以四列为例，此时我们需要四个ul;
+			2.由于每次都是找最矮的那一列添加li,所以li只能通过动态
+			获取，又由于li高度随机，此时我们用到随机数，需要给定做大高度值和最小高度值；
+			3.当鼠标滑到浏览器窗口某个高度是时，我们要想获取的li无穷尽也则须再调用之前创造的一组li,完毕；*/
+			#box{
+				width:800px;
+				border:2px red solid;
+				overflow: hidden;
+				margin:20px auto;
+			}
+
+			ul{
+				list-style-type:none;
+				width:190px;
+				padding:5px;
+				float:left;
+			}
+
+			ul li{
+				margin-bottom: 5px;
+				background-color: yellow;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul></ul>
+			<ul></ul>
+			<ul></ul>
+			<ul></ul>
+		</div>
+	</body>
+	<script>
+		window.onload=function(){
+			var oList=document.getElementsByTagName('ul');
+			var oNum=0;//li里的内容；
+
+			// 创造li
+			creatli();
+			function creatli(){
+				for(var i=0;i<20;i++){
+
+					var oli=document.createElement("li");
+					oNum++;
+					oli.innerHTML=oNum;
+					// 设置li随机高度
+					oli.style.height=suiji(100,300)+"px";
+					// console.log(oli.style.height)
+
+
+					var arr=[];
+					// 定义arr,先让arr存四个 ul的高度
+					for(var j=0;j<oList.length;j++){
+						arr.push(oList[j].offsetHeight)
+					}
+
+					//  让arr第一个数最小，存取最小值下标值
+					var oMin=arr[0];
+					var mindex=0; 
+					// 判断，一一比较取最小值；
+					for(var z=0;z<arr.length;z++){
+						if(oMin>arr[z]){
+							oMin=arr[z];
+							// 存最小值的下标
+							mindex=z;
+						}
+					}
+					// console.log(mindex);
+					oList[mindex].appendChild(oli);
+				}
+			}
+
+			// 返回（min,max）的随机整数
+			function suiji(min,max){
+				return parseInt(Math.random()*(max-min)+min);
+			}
+		}
+
+	</script>
+</html>

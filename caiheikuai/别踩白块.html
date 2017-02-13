@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=0.6,maximum-scale=0.6,user-scalable=no" />
+		<title>别踩白块</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				background-color: antiquewhite;
+			}
+			
+			ul {
+				list-style: none;
+			}
+			
+			.container {
+				width: 500px;
+				height: 800px;
+				border-radius: 10px;
+				overflow: hidden;
+				position: relative;
+				margin: 50px auto 0;
+			}
+			
+			.start {
+				/*display: none;*/
+				width: 500px;
+				height: 800px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background: url(img/1.jpeg) 0 0 no-repeat;
+				background-size: 100% 100%;
+				text-align: center;
+			}
+			
+			.start button {
+				/*transition-duration:.5s;*/
+				outline: 0;
+				width: 100px;
+				height: 50px;
+				border-radius: 10px;
+				background-color: burlywood;
+				margin: 500px 30px 0 30px;
+				font-size: 20px;
+			}
+			.explain{
+				display: none;
+				width: 500px;
+				height: 800px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background: rgba(0,0,0,0.7);
+				background-size: 100% 100%;
+				text-align: center;
+			}
+			.explain div{
+				position: absolute;
+				top:50px;
+				width: 80%;
+				left: 50%;
+				transform:translateX(-50%);
+				text-align: center;
+				background: transparent;
+				font-size: 40px;
+				line-height: 60px;
+				color:white;
+			}
+			.explain button {
+				outline: 0;
+				width: 100px;
+				height: 50px;
+				border-radius: 10px;
+				background-color: burlywood;
+				margin: 500px 30px 0 30px;
+				font-size: 20px;
+			}
+			
+			.game {
+				display: none;
+				width: 500px;
+				height: 800px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background-color: pink;
+				text-align: center;
+			}
+			
+			.score {
+				position: absolute;
+				padding: 10px;
+				top: 30px;
+				left: 50%;
+				transform: translateX(-50%);
+				font-size: 50px;
+				background-color: transparent;
+				color: gold;
+				z-index: 10;
+			}
+			
+			.game ul li {
+				overflow: hidden;
+				position: absolute;
+				height: 200px;
+				width: 500px;
+				background-color: transparent;
+			}
+			
+			.game ul li span {
+				float: left;
+				margin-left: 5px;
+				box-sizing: border-box;
+				border:1px solid #ccc;
+			}
+			.game .show{
+				animation:shows 0.01s infinite alternate;
+			}
+			.game ul li span:first-child {
+				margin-left: 2.5px;
+			}
+			
+			.stop {
+				display: none;
+				width: 500px;
+				height: 800px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background: url(img/2.jpg) 0 0 no-repeat;
+				background-size: 100% 100%;
+				text-align: center;
+			}
+			.stop .stop1{
+				position: absolute;
+				top:50px;
+				width: 100%;
+				text-align: center;
+				background: transparent;
+				font-size: 40px;
+				line-height: 100px;
+			}
+			.stop .stop1 span{
+				background: transparent;
+				color:chartreuse;
+			}
+			
+			.stop button {
+				outline: 0;
+				width: 120px;
+				height: 50px;
+				border-radius: 10px;
+				background-color: burlywood;
+				margin: 500px 30px 0 30px;
+				font-size: 20px;
+			}
+			@keyframes shows{
+				0%{
+					background: transparent;
+				}
+				100%{
+					background: red;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="start">
+				<button>开始游戏</button>
+				<button>游戏说明</button>
+			</div>
+			<div class="explain">
+				<div>点击开始，游戏开始运行。游戏运行时必须从第一个黑块开始，不能跳跃点击，不能点击多次，不能点击白块，否则游戏即停止运行。</div>
+				<button>关闭</button>
+			</div>
+			<div class="game">
+				<span class="score">0</span>
+				<ul>
+					<!--<li></li>-->
+				</ul>
+			</div>
+			<div class="stop">
+				<div class="stop1">游戏结束<br/>你的分数：<span>0</span>分</div>
+				<button>重新开始</button>
+				<button>返回主菜单</button>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var startbtn = document.querySelectorAll(".start button")[0];
+		var explainBtn=document.querySelectorAll(".start button")[1];
+		var start = document.querySelector(".start");
+		var explain=document.querySelector(".explain");
+		var explainClose=explain.querySelector("button");
+		var game = document.querySelector(".game");
+		var ul = document.querySelector(".game ul");
+		var lis = ul.getElementsByTagName("li");
+		var span = document.querySelector(".score");
+		var stop = document.querySelector(".stop");
+		var showscore=document.querySelector(".stop .stop1 span");
+		var restart=document.querySelectorAll(".stop button")[0];
+		var returnFirst=document.querySelectorAll(".stop button")[1];
+		//点击游戏说明，两个按钮隐藏，说明界面出现
+		explainBtn.onclick=function(){
+			startbtn.style.opacity="0";
+			explainBtn.style.opacity="0";
+			explain.style.display="block";
+		}
+		//点击关闭按钮，两个按钮出现，说明界面关闭
+		explainClose.onclick=function(){
+			startbtn.style.opacity="1";
+			explainBtn.style.opacity="1";
+			explain.style.display="none";
+		}
+		//点击开始，开始页面隐藏，游戏界面出现
+		startbtn.onclick = function() {
+			ul.innerHTML="";
+			s.speed=10;
+			s.index=0;
+			s.old=0;
+			s.arr=[];
+			s.score=0;
+			span.innerHTML=s.score;
+			start.style.display = "none";
+			game.style.display = "block";
+			for(var i=0;i<5;i++){
+				createLi(i*200);
+				console.log("createLi");
+
+			}
+			
+			liMove();//注意的地方
+		}
+		var s = {
+				arr: [], //记录生成的ul和li黑块的位置
+				gameH: 800, //游戏页面的高
+				gameW: 500, //游戏页面的宽
+				num: 0, //生成li黑块的位置
+				index: 0, //生成的第几个li
+				speed: 10, //li运动速度
+				score: 0,//计分
+				old:0,//记录分数/10的结果
+			}
+			//随机数
+		function random(min, max) {
+			return parseInt(Math.random() * (max - min + 1) + min);
+		}
+		//给一个二级事件，清除手机版的默认属性
+		document.addEventListener("touchmove",function(e){
+			var e=e||window.event;
+			e.preventDefault();
+		},false)
+
+		//检测，当数组里的数据小于gameH时，继续生成li
+		
+
+		function testLi() {
+			if(s.arr[lis.length-1][0] <= 800) {
+				createLi(1000);
+			}
+		}
+		//创建li和span
+		function createLi(a) {
+			var newLi = document.createElement("li");
+//			s.index = lis.length;
+			s.num = random(0, 3);
+			for(var i = 0; i < 4; i++) {
+				var newSpan = document.createElement("span");
+				newSpan.style.width = "120px";
+				newSpan.style.height = "200px";
+				newSpan.style.background = "white";
+				if(i == s.num) {
+					newSpan.className="true";
+					newSpan.style.background = "black";
+				}
+				newLi.appendChild(newSpan);
+			}
+			
+			
+			ul.appendChild(newLi);
+			s.arr.push([a,s.num,false]);
+			
+			newLi.style.bottom = a+ "px";
+			console.log(s.arr);
+			s.index++;
+			newLi.index=s.index;
+		}
+
+		//让li向下运动,当libottom小于-250时，将其删除
+		function liMove() {
+			s.timer = setInterval(function() {
+				testLi();
+				for(var i = 0; i < lis.length; i++) {
+					s.arr[i][0] -= s.speed;
+					console.log(s.speed)
+					lis[i].style.bottom = s.arr[i][0] + "px";
+					if(s.arr[i][0] < -250) {
+						ul.removeChild(lis[i]);
+						s.arr.shift();
+					}
+					(function(k){
+						var spans = lis[k].getElementsByTagName("span");
+						for(var j=0;j<spans.length;j++){
+							(function(w){
+								spans[w].onclick=function(){
+									if(spans[w].parentNode.index!=s.score+1){
+//										spans[w].style.background="red";
+										spans[w].className="show";
+										gameOver();
+									}else if(spans[w].className=="true"&&s.arr[k][2]==false){
+										spans[w].style.background="greenyellow";
+										s.score++;
+										span.innerHTML=s.score;
+										s.arr[k][2]=true;
+										console.log(w)
+										if(parseInt(s.score/10)>5){
+											parseInt(s.score/10)=5;
+										}
+										if(s.old!=parseInt(s.score/10)){
+											s.speed+=parseInt(s.score/10)*5;
+											s.old=parseInt(s.score/10);
+										}
+									}else{
+//										spans[w].style.background="red";
+										spans[w].className="show";
+										gameOver();
+									}
+								}
+								if(s.arr[k][2]==false&&s.arr[k][0]<=-200){
+									gameOver();
+								}
+							})(j);
+						}
+					})(i);
+				}
+			}, 100)
+		}
+		
+		
+		//游戏结束,数据变为原始
+		function gameOver(){
+			clearInterval(s.timer);
+			setTimeout(function(){
+				showscore.innerHTML=s.score;
+				game.style.display="none";
+				stop.style.display="block";
+			},500)
+			
+		}
+		
+		//点击重新开始，系统重新运行，stop界面隐藏，game出现
+		restart.onclick=function(){
+			ul.innerHTML="";
+			s.speed=10;
+			s.index=0;
+			s.old=0;
+			s.arr=[];
+			s.score=0;
+			span.innerHTML=s.score;
+			stop.style.display = "none";
+			game.style.display = "block";
+			for(var i=0;i<5;i++){
+				createLi(i*200);
+			}
+			
+			liMove();
+		}
+		
+		//点击返回主菜单，stop隐藏，start出现
+		returnFirst.onclick=function(){
+			stop.style.display="none";
+			start.style.display="block";
+		}
+	</script>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>bird</title>
+	<style type="text/css">
+		body {margin: 0;padding: 0;}
+		#contain {width: 343px;height: 480px;position: relative;margin-left: 100px;overflow: hidden;}
+		#bird {position: absolute;top: 220px;left: 50px;z-index: 100;display: none;}
+		#banner {width: 800px;position: absolute;bottom: 41px;overflow: hidden;}
+		#birdbox {position: absolute; width: 300px;height: 425px;top: 0;left: 0;overflow: hidden;}
+		.uppipe {width: 60px;background: url(../img/pipe.png);position: absolute;top: 0;left: 330px;}
+		.uppipe img {position: absolute;bottom: 0;}
+		.downpipe {width: 60px;background: url(../img/pipe1.png);position: absolute;bottom: 57px;left: 330px;}
+		.downpipe img {position: absolute;top: 0;}
+		#fly {width: 236px;height: 77px;position: absolute;top: 0;left: 17%;background: url(../img/head.jpg);}
+		#fly img {right: 0;position: absolute;top: 50%;}
+		#startbtn {width: 220px;height: 29px;position: absolute;top: 78%;left: 15%;}
+		#startbtn img:nth-child(1) {float: left;cursor: pointer;}
+		#startbtn img:nth-child(2) {float: right;cursor: pointer;}
+		#press {height: 200px;position: absolute;top:30%;display: none;}
+		#press img:nth-child(1) {position: absolute;top: 0;left: 75px;}
+		#press img:nth-child(2) {position: absolute;bottom: 0;left: 15px;}
+		#score {position: absolute;top: 15px;left: 50%;margin-left: -14px;display: none;z-index: 100;}
+		#overbox {width: 270px;height: 320px;position: absolute;bottom: 100px;left: 50%;top: 17%;margin-left: -136px;display: none;z-index: 100;}
+		#submit {position: absolute;bottom: 0;right: 35px;}
+		#ok {position: absolute;bottom: 0;left: 15px;}
+		#message {position: absolute;top:30%;left: 0;}
+		#gameover {position: absolute;top: 0;left: 8%;}
+		#nowscore{width: 40px;display: block;position: absolute;height: 26px;top: 42%;right: 10%;}
+		#best {width: 40px;display: block;position: absolute;height: 26px;top: 58%;right: 10%;}
+		span img {
+			width: 30%;
+		}
+	</style>
+</head>
+<body>
+	<div id="contain">
+		<img src="../img/bg.jpg" id="bgpic">
+		<img src="../img/down_bird0.png" id="bird">
+		<div id="banner">
+			<img src="../img/banner.jpg"><img src="../img/banner.jpg">
+		</div>
+		<div id="fly">
+		<img src="../img/bird0.png" alt=""></div>
+		<div id="startbtn">
+			<img src="../img/start.jpg" alt="">
+			<img src="../img/score.jpg" alt="">
+		</div>
+		<div id="press">
+			<img src="../img/ready.png" alt="">
+			<img src="../img/press.png" alt="">
+		</div>
+		<div id="score">
+			<img src="../img/0.png" alt="">
+		</div>
+		<div id="overbox">
+			<img src="../img/game_over.jpg" alt="" id="gameover">
+			<img src="../img/message.jpg" alt="" id="message">
+			<img src="../img/ok.jpg" alt="" id="ok">
+			<img src="../img/submit.jpg" alt="" id="submit">
+			<span id="nowscore"><img src="../img/0.png" alt=""></span>
+			<span id="best"><img src="../img/0.png" alt=""></span>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="bird.js"></script>
+</html>

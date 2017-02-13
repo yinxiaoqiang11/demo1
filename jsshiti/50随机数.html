@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>一组彩票数字为例</title>
+		<style>
+			
+		</style>
+	<body>
+		
+	</body>
+	<script>
+		window.onload=function(){
+			var arr=[];
+			while (arr.length<7){
+			// 取1-32 之间的随机数，并变为整数
+				var prem=parseInt(ram(1,32));
+				var boo=true;
+				for(var i=0;i<arr.length;i++){
+
+					if(prem==arr[i]){
+						boo=false;
+					}		
+				}
+				 if(boo){
+						arr.push(prem);
+					}
+					console.log(arr.sort(paixu));
+				
+			}
+				
+				// 取随机数
+				function ram(min,max){
+					return Math.random()*(max-min)+min;
+
+				}
+
+				function paixu(a,b){
+					return a-b;
+				}
+
+			} 
+
+	</script>
+</html>

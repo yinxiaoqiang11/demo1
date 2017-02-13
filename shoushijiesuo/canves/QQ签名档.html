@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<style>
+
+		body{
+			font-family: hychf,"黑体";
+		}
+		#mycanvas{
+			border: 1px solid #777;
+			display: block;
+			margin: auto;
+		}
+		#imgdownload{
+			width: 100px;
+			height: 30px;
+			display:inline-block;
+			text-decoration: none;
+			text-align: center;
+			line-height: 30px;
+			border: 1px #000 solid;
+			border-radius: 6px;
+		}
+	</style>
+</head>
+<body>
+	 <canvas id="mycanvas" width="1280" height="512"></canvas>  
+	 <!-- 一开始的时候就给canvas设置好其宽高（若不设定宽高，浏览器会默认设置canvas大小为宽300、高100像素），
+	 而且不能使用css来设置（会被拉伸），建议直接写于canvas标签内部 -->
+	 <!-- <canvas> 标签定义图形，比如图表和其他图像。
+		<canvas> 标签只是图形容器，您必须使用脚本来绘制图形。 -->
+		<br>
+        内容：<input type="text" id="mytxt1" value="嘎嘎嘎" />
+        文字背景图：<select id="dbg">
+                <option value="bg4.png">bg4.png</option>
+                <option value="bg5.png">bg5.png</option>
+               </select>
+             <input type="button" id="send" value="生成签名档" />
+             <a href="#" id="imgdownload">下载图片</a>
+	
+</body>
+<hr style="height:30px; border:0">
+<canvas id="myCanvas"></canvas>
+
+
+<script type="text/javascript">
+var canvas=document.getElementById('myCanvas');
+// var ctx=canvas.getContext('2d');
+// ctx.fillStyle='#FF0000';
+// ctx.fillRect(0,0,80,100);
+
+//Internet Explorer 9、Firefox、Opera、Chrome 以及 Safari 支持 arc() 方法。
+
+//注释：Internet Explorer 8 或更早的浏览器不支持 <canvas> 元素。
+
+console.dir(canvas);
+
+ //ctx.fillRect(x, y, width, height) 和 ctx.strokeRect(x, y, width, height) ，参数中的 x 和 y 依旧表示需绘制的矩形的起始点坐标（相对canvas原点），width 和 height表示需绘制的矩形宽高。
+
+function draw() {
+  var ctx = document.getElementById('myCanvas').getContext('2d');
+  // 画矩形  获取该canvas的2D绘图环境对象
+  ctx.fillStyle = '#FD0';	//颜色赋值  fillStyle 用于设置填充颜色
+  ctx.fillRect(0,0,75,75);  //从画布上的(0,0)坐标点为起始点，绘制一个宽高均为75px的实心矩形
+  ctx.fillStyle = '#6C0';
+  ctx.fillRect(75,0,75,75);
+  ctx.fillStyle = '#09F';
+  ctx.fillRect(0,75,75,75);
+  ctx.fillStyle = '#F30';
+  ctx.fillRect(75,75,75,75);
+  ctx.fillStyle = '#FFF';
+  // 设置透明度 取值范围 0-1
+  ctx.globalAlpha = 0.2;
+  // 画7个同心圆
+  for (i=0;i<7;i++){
+      ctx.beginPath();   //重置画笔，避免污染
+      ctx.arc(75,75,10+10*i,0,Math.PI*2,true);
+      //context.arc(x,y,r,sAngle,eAngle,counterclockwise);
+      //圆的中心的 x 坐标,圆的中心的 y 坐标。圆的半径。起始角，以弧度计.结束角，以弧度计。
+      //False = 顺时针，true = 逆时针。
+      //如需通过 arc() 来创建圆，请把起始角设置为 0，结束角设置为 2*Math.PI.从0-2PI顺时针
+
+      ctx.fill();		//填充   fill() 方法在画布上绘制实际的弧。
+  }
+}
+draw();
+
+//签名档
+			var mycanvas=document.getElementById("mycanvas");
+            var mytxt1=document.getElementById("mytxt1");
+            var dbg=document.getElementById("dbg");
+            var imgdownload=document.getElementById("imgdownload");
+            var ctx=mycanvas.getContext("2d"); //.getContext()只接受一个参数，该参数用于获取canvas的绘图环境，例如.getContext("2d")表示该canvas的绘图环境为2D平面（可以绘制文本、直线、弧线、矩形、圆形等）
+            //获取该canvas的2D绘图环境对象
+
+            var bg=new Image();
+            var bg2=new Image();
+             bg.src='imgs/bg3.png';   	//图像背景图
+             bg2.src='imgs/bg4.png';	//文字背景图
+            
+               bg2.onload=ShowImg;       //等图片onload之后才执行绘图代码，防止代码在图片加载到之前就执行。
+            function ShowImg(){           //绘图代码
+                bg2.src='imgs/'+dbg.value;
+                ctx.drawImage(bg,0,0,mycanvas.width,mycanvas.height);  //在画布上定位图像，并规定图像的宽度和高度：context.drawImage(img,x,y,width,height);
+                //img 	规定要使用的图像、画布或视频。 
+                //x 	在画布上放置图像的 x 坐标位置。 y 在画布上放置图像的 y 坐标位置。  在画布坐标（0，0）绘制一张图片
+                ctx.save();   //因为ctx是一个全局对象，ctx.save()的时候保存了ctx当前的状态值
+                //save 和 restore 方法是用来保存和恢复 canvas 状态的，都没有参数。Canvas 的状态就是当前画面应用的所有样式和变形的一个快照。Canvas 状态是以堆(stack)的方式保存的，每一次调用 save 方法，当前的状态就会被推入堆中保存起来。每一次调用 restore 方法，上一个保存的状态就从堆中弹出，所有设定都恢复。
+                var fpadd=200;//规定内间距
+                var fsz=Math.ceil((mycanvas.width-fpadd*2)/mytxt1.value.length);//根据字数计算字体大小返回一个大于或等于数"x" 的最小整数
+                ctx.font=fsz+"px hychf";
+                var tw=ctx.measureText(mytxt1.value).width;//文字真实宽度
+                var ftop=(mycanvas.height-fsz)/2-30;//根据字体大小计算文字top
+                var fleft=(mycanvas.width-tw)/2+16;//根据字体大小计算文字left
+                
+                ctx.textBaseline="top";//设置绘制文本时的文本基线。
+                var woodfill = ctx.createPattern(bg2,"repeat");//设置图片为笔刷  理填充，通过加载一张纹理图像，然后创建画笔模式，创建纹理模式的API为ctx.createPattern(imageTexture,"repeat");第二参数支持四个值，分别为”repeat-x”, ”repeat-y”, ”repeat”,”no-repeat”意思是纹理分别沿着X轴，Y轴，XY方向沿重复或者不重复。
+                ctx.fillStyle=woodfill;  //fillStyle 属性设置或返回用于填充绘画的颜色、渐变或模式。
+                ctx.shadowBlur=10;//阴影程度
+                ctx.shadowOffsetX=20;
+                ctx.shadowOffsetY=20;
+                ctx.shadowColor="rgba(0,0,0,1)";
+                ctx.fillText(mytxt1.value,fleft,ftop);   //填充的文本
+                // ctx.lineWidth = 1;
+                ctx.strokeStyle ="rgba(255,255,255,0.4)";   //描边
+                ctx.strokeText(mytxt1.value, fleft, ftop); //strokeText() 方法在画布上绘制文本（没有填色）。文本的默认颜色是黑色。
+                ctx.restore();
+            }
+            
+            document.getElementById("send").onclick=ShowImg;
+            imgdownload.onclick=function(){
+                if(!mytxt1.value){alert('请输入内容');return false;}
+                // this.href = mycanvas.toDataURL();  //返回的是一串Base64编码的URL,转换成图像
+                // this.target = "_blank";
+			    // this.download =mytxt1.value + ".png";//转化下载。。。还没研究会
+            }
+//             /**
+//  * 获取mimeType
+//  * @param  {String} type the old mime-type
+//  * @return the new mime-type
+//  */
+
+// var type = 'png';
+// var imgData = canvas.toDataURL(type);
+
+// var _fixType = function(type) {
+//     type = type.toLowerCase().replace(/jpg/i, 'jpeg');
+//     var r = type.match(/png|jpeg|bmp|gif/)[0];
+//     return 'image/' + r;
+// };
+
+// // 加工image data，替换mime type
+// imgData = imgData.replace(_fixType(type),'image/octet-stream');
+
+// *
+//  * 在本地进行文件保存
+//  * @param  {String} data     要保存到本地的图片数据
+//  * @param  {String} filename 文件名
+ 
+// var saveFile = function(data, filename){
+//     var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+//     save_link.href = data;
+//     save_link.download = filename;
+   
+//     var event = document.createEvent('MouseEvents');
+//     event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+//     save_link.dispatchEvent(event);
+// };
+   
+// // 下载后的问题名
+// var filename = 'baidufe_' + (new Date()).getTime() + '.' + type;
+// // download
+// saveFile(imgData,filename);
+</script>
+</html>

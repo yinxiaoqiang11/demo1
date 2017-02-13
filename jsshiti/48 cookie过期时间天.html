@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>过期时间</title>
+		<style>
+			
+		</style>
+	<body>
+		
+	</body>
+	<script>
+		function setCookie(key,value,t){
+			var oDate=new Date();
+			// 获取当前日期
+			var day=oDate.getDate();
+			// t:延后的天数
+			oDate.setDate(day+t);
+			document.cookie=key+"="+value+"; expires="+oDate.toGMTString();
+		}
+
+	</script>
+</html>

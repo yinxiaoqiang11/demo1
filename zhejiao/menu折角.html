@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>menu</title>
+		<style>
+			*{
+				margin: 0px;
+				padding: 0px;
+				text-decoration: none;
+			}
+			body{
+				background-color: silver;
+				padding: 50px 0 0;
+				text-align:center;
+			}
+			.ribbon {
+				width: 430px;
+				margin: 0px auto;
+				overflow: hidden;
+			}
+			/*左边*/
+			.ribbon:before{
+				content: "";
+				float: left;
+				/*设置margin-top是为了和a里面的span在同一行*/
+				margin-top: 8px;
+				border: 24px solid #fff;
+				border-left-color: transparent;
+			}
+			/*右边*/
+			.ribbon:after{
+				content: "";
+				float: left;
+				margin-top: 8px;
+				border: 24px solid #fff;
+				border-right-color: transparent;
+			}
+			
+			.ribbon a{
+			    float: left;
+			    /*为hover有突出效果,所以设置的高度要比两边的高*/
+			    height: 56px;
+				color: #000;
+				overflow: hidden;
+			}
+			.ribbon span{
+				display: block;
+				background-color: #fff;
+				line-height: 48px;
+				padding: 0px 17px;
+				margin-top: 8px;
+				position: relative;
+				font-family: HUM521L,serif;
+				font-size: 17px;
+				
+				transition: background-color 0.2s, margin-top 0.2s;
+			}
+			.ribbon a:hover span{
+				background: #FFD204;
+				margin-top: 0;
+			}
+			.ribbon span:before{
+				content: "";
+				float: left;
+				position: absolute;
+				top: 48px;
+				left: 0px;
+				border-right: 8px solid #9B8651;
+				border-bottom: 8px solid #fff;
+			}
+			.ribbon span:after{
+				content: "";
+				float: left;
+				position: absolute;
+				top: 48px;
+				right: 0px;
+				border-left: 8px solid #9B8651;
+				border-bottom: 8px solid #fff;
+			}
+			
+			
+		</style>		
+		
+	</head>
+	<body>
+		<div class="ribbon">
+			<a href="##"><span>Home</span></a>
+			<a href="##"><span>About</span></a>
+			<a href="##"><span>Services</span></a>
+			<a href="##"><span>Contact</span></a>
+		</div>
+	</body>
+</html>

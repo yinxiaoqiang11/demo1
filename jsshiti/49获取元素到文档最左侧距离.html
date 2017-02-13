@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>offsetLeft</title>
+		<style>
+			
+		</style>
+	<body>
+		
+	</body>
+	<script>
+		function offset(obj){
+			var ll=obj.offsetLeft;
+			var tt=obj.offsetTop;
+
+			while(obj){
+				ll += obj.offsetLeft;
+				tt += obj.offsetTop;
+
+				obj=obj.offsetParent;
+			}
+			return {left:ll,top:tt};	
+		}
+
+	</script>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>移动端拖拽</title>
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+		<style>
+			#box{
+				width:200px;
+				height:200px;
+				background-color: red;
+				position:absolute;
+			}
+		</style>
+	<body>
+		<div id="box"></div>
+	</body>
+	<script>
+		var oBox = document.getElementById("box");
+		var x,y;
+		// 绑定touchstart事件
+		oBox.addEventListener("touchstart",function(ev){
+			x=ev.touches[0].clientX-oBox.offsetLeft;
+			y=ev.touches[0].clientY-oBox.offsetTop;
+			console.log(x);
+			 //阻止页面的滑动默认事件
+			document.addEventListener("touchmove",defaultEvent,false);
+		},false)
+		//绑定move事件
+		oBox.addEventListener("touchmove",function(ev){
+			var x1 = ev.touches[0].clientX-x;
+			var y1 = ev.touches[0].clientY-y;
+			
+			oBox.style.left = x1 + "px";
+  			oBox.style.top = y1 + "px";
+		},false);
+		oBox.addEventListener("touchend",function(){
+			document.removeEventListener("touchmove",defaultEvent,false);
+		},false);
+		//阻止默认事件
+		function defaultEvent(ev) {
+			ev.preventDefault();
+		}
+
+	</script>
+</html>
